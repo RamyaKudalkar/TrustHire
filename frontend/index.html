@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustHire - Know Before You Apply</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <h2 class="logo">Trust<span>Hire.</span></h2>
+
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#how-it-works">How It Works</a>
+            </div>
+
+            <a href="#analyzer" class="nav-button">Analyze Offer</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <p class="tagline">YOUR CAREER. YOUR SAFETY.</p>
+
+                <h1>
+                    Don't Get Scammed.<br>
+                    <span>Get Hired.</span>
+                </h1>
+
+                <p class="description">
+                    Not every job opportunity is what it seems.
+                    TrustHire helps you identify potential warning signs
+                    in job and internship offers before you apply.
+                </p>
+
+                <a href="#analyzer" class="primary-button">
+                    Analyze an Opportunity →
+                </a>
+
+                <p class="small-note">
+                    Make informed decisions. Apply with confidence.
+                </p>
+            </div>
+
+            <div class="hero-card">
+                <div class="shield">🛡️</div>
+
+                <h3>Stay One Step Ahead</h3>
+
+                <p>Check an opportunity before taking the next step.</p>
+
+                <div class="feature">
+                    <span>✓</span> Rule-based warning detection
+                </div>
+
+                <div class="feature">
+                    <span>✓</span> Clear explanations
+                </div>
+
+                <div class="feature">
+                    <span>✓</span> Verification checklist
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <h2>Why TrustHire?</h2>
+
+            <p>
+                Students deserve safe and transparent career opportunities.
+                TrustHire helps them pause, review and verify before applying.
+            </p>
+        </section>
+
+        <section class="how-it-works" id="how-it-works">
+            <h2>How It Works</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <h3>01. Paste</h3>
+                    <p>Enter the job or internship offer details.</p>
+                </div>
+
+                <div class="step">
+                    <h3>02. Analyze</h3>
+                    <p>
+                        Check the text for potential warning signs
+                        and missing details.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <h3>03. Review</h3>
+                    <p>
+                        Understand the concerns and what to verify next.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="analyzer" id="analyzer">
+            <h2>Check Before You Apply</h2>
+
+            <p>
+                Paste your job or internship offer details below.
+            </p>
+
+            <div class="analyzer-box">
+
+                <textarea
+                    id="jobDescription"
+                    placeholder="Paste the job or internship description here..."
+                    rows="8"
+                ></textarea>
+
+                <button type="button" onclick="analyzeOffer()">
+                    Analyze Opportunity →
+                </button>
+
+                <p class="privacy-note">
+                    Don't include passwords, identity numbers or bank details.
+                </p>
+
+                <div id="result"></div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 TrustHire. Know Before You Apply.</p>
+        <p>Automated preliminary review. Always verify independently.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
