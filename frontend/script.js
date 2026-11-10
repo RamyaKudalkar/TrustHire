@@ -1,4 +1,3 @@
-
 function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, function (character) {
         const entities = {
@@ -16,7 +15,7 @@ function escapeHTML(value) {
 async function analyzeOffer() {
     const input = document.getElementById("jobDescription");
     const result = document.getElementById("result");
-    const button = document.querySelector(".analyzer-box button");
+    const button = document.querySelector(".analyzer-box .analyze-button");
 
     if (!input || !result || !button) {
         return;
@@ -31,6 +30,8 @@ async function analyzeOffer() {
         result.className = "result-message error";
         return;
     }
+
+    const originalButtonText = button.textContent;
 
     button.disabled = true;
     button.textContent = "Analyzing...";
@@ -51,7 +52,13 @@ async function analyzeOffer() {
             })
         });
 
-        const data = await response.json();
+        let data;
+
+        try {
+            data = await response.json();
+        } catch {
+            throw new Error("Invalid server response.");
+        }
 
         if (!response.ok) {
             result.textContent =
@@ -295,6 +302,6 @@ async function analyzeOffer() {
 
     } finally {
         button.disabled = false;
-        button.textContent = "Analyze Opportunity →";
+        button.textContent = originalButtonText;
     }
 }

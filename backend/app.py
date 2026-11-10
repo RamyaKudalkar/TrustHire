@@ -1,4 +1,3 @@
-
 import re
 
 from flask import Flask, jsonify, request, send_from_directory
@@ -104,7 +103,6 @@ def analyze_offer(description):
     fee_evidence = None
 
     for sentence in sentences:
-
         has_fee_request = sentence_has_pattern(
             sentence, fee_request_patterns
         )
@@ -148,7 +146,6 @@ def analyze_offer(description):
     sensitive_evidence = None
 
     for sentence in sentences:
-
         contains_request = sentence_has_pattern(
             sentence, sensitive_patterns
         )
@@ -196,7 +193,6 @@ def analyze_offer(description):
     promise_evidence = None
 
     for sentence in sentences:
-
         has_promise = sentence_has_pattern(
             sentence, promise_patterns
         )
@@ -248,7 +244,6 @@ def analyze_offer(description):
     urgency_evidence = None
 
     for sentence in sentences:
-
         has_urgency = sentence_has_pattern(
             sentence, urgency_patterns
         )
