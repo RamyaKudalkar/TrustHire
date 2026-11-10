@@ -18,7 +18,7 @@ Instead of simply labelling an opportunity as genuine or fraudulent, it explains
 
 - **Warning Sign Detection:** Identifies potential upfront payment requests, sensitive information requests, urgency tactics, and unrealistic promises.
 - **Evidence-Based Reports:** Displays the exact sentence that triggered a warning.
-- **Context-Aware Checks:** Attempts to distinguish genuine warning signs from reassuring statements and ordinary application information.
+- **Context-Aware Checks:** Attempts to distinguish warning signs from reassuring statements and ordinary application information.
 - **Missing Information Detection:** Highlights information such as company contact details and job responsibilities that may need clarification.
 - **Company Verification Guidance:** Explains the difference between a company name being mentioned and its identity being independently verified.
 - **Verification Checklist:** Provides practical steps students can follow before accepting an opportunity.
@@ -39,25 +39,25 @@ Instead of simply labelling an opportunity as genuine or fraudulent, it explains
 TrustHire/
 ├── frontend/
 │   ├── index.html
+│   ├── analyzer.html
 │   ├── style.css
 │   └── script.js
 ├── backend/
 │   └── app.py
-├── .env
 ├── .gitignore
 └── README.md
 ```
+
+Note: The local virtual environment (`venv/`) and `.env` file are excluded from version control.
 
 ## Getting Started
 
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/RamyaKudalkar/TrustHire.git
 cd TrustHire
 ```
-
-Replace `YOUR_REPOSITORY_URL` with your repository URL.
 
 ### 2. Create a virtual environment
 
@@ -87,17 +87,20 @@ python backend/app.py
 
 ### 6. Open TrustHire
 
-Visit http://127.0.0.1:5000
+Visit:
+
+http://127.0.0.1:5000
 
 Keep the backend terminal running while using the application.
 
 ## How It Works
 
-1. Paste a job or internship description into the analyzer.
-2. TrustHire checks the description for potential warning signs.
-3. The backend prepares a preliminary assessment.
-4. The frontend displays detected warnings, supporting evidence, missing information, and verification steps.
-5. The student can use the report to decide what needs further checking.
+1. Open TrustHire and navigate to the analyzer.
+2. Paste a job or internship description into the text area.
+3. TrustHire checks the description for potential warning signs.
+4. The backend prepares a preliminary assessment.
+5. The frontend displays detected warnings, supporting evidence, missing information, and verification steps.
+6. Use the report to understand what needs further checking.
 
 ## Important Limitations
 
