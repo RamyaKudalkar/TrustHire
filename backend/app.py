@@ -3,6 +3,7 @@ import re
 
 from flask import Flask, jsonify, request, send_from_directory
 
+
 app = Flask(
     __name__,
     static_folder="../frontend",
@@ -10,10 +11,23 @@ app = Flask(
 )
 
 
+# ==============================
+# PAGE ROUTES
+# ==============================
+
 @app.route("/")
 def home():
     return send_from_directory(app.static_folder, "index.html")
 
+
+@app.route("/analyzer")
+def analyzer():
+    return send_from_directory(app.static_folder, "analyzer.html")
+
+
+# ==============================
+# HEALTH CHECK
+# ==============================
 
 @app.route("/api/health")
 def health():
@@ -22,6 +36,10 @@ def health():
         "message": "TrustHire backend is connected!"
     })
 
+
+# ==============================
+# HELPER FUNCTIONS
+# ==============================
 
 def sentence_has_pattern(sentence, patterns):
     """Check whether a sentence matches any supplied regex pattern."""
@@ -55,7 +73,12 @@ def split_sentences(description):
     return sentences
 
 
+# ==============================
+# OFFER ANALYSIS
+# ==============================
+
 def analyze_offer(description):
+
     text = description.lower()
     warnings = []
 
@@ -81,6 +104,7 @@ def analyze_offer(description):
     fee_evidence = None
 
     for sentence in sentences:
+
         has_fee_request = sentence_has_pattern(
             sentence, fee_request_patterns
         )
@@ -124,6 +148,7 @@ def analyze_offer(description):
     sensitive_evidence = None
 
     for sentence in sentences:
+
         contains_request = sentence_has_pattern(
             sentence, sensitive_patterns
         )
@@ -154,11 +179,12 @@ def analyze_offer(description):
     # 3. Check for unusually strong promises
 
     promise_patterns = [
-        r"\bguaranteed income\b",
+        r"\bguaranteed\s+(?:a\s+)?(?:job\s+)?placement\b",
+        r"\bguaranteed\s+(?:job|employment|salary|income|selection)\b",
+        r"\b(?:job|employment|placement|salary|income)\s+(?:is\s+)?guaranteed\b",
+        r"\b100\s*%\s*guaranteed\s+(?:job|placement|selection|income|salary)\b",
         r"\bearn money instantly\b",
-        r"\bunlimited salary\b",
-        r"\bguaranteed selection\b",
-        r"\b100%\s+guaranteed\s+(?:job|selection|income)\b"
+        r"\bunlimited salary\b"
     ]
 
     promise_denial_patterns = [
@@ -170,6 +196,7 @@ def analyze_offer(description):
     promise_evidence = None
 
     for sentence in sentences:
+
         has_promise = sentence_has_pattern(
             sentence, promise_patterns
         )
@@ -186,13 +213,14 @@ def analyze_offer(description):
         warnings.append({
             "title": "Unusually strong promises",
             "reason": (
-                "Guaranteed income or selection claims may "
-                "create unrealistic expectations."
+                "Guaranteed job placement, salary or income "
+                "claims may create unrealistic expectations. "
+                "Such claims should be checked carefully."
             ),
             "evidence": promise_evidence,
             "action": (
-                "Ask for a written job description, "
-                "compensation details and selection process."
+                "Ask for written details about the placement "
+                "conditions, compensation and selection process."
             )
         })
 
@@ -200,9 +228,10 @@ def analyze_offer(description):
 
     urgency_patterns = [
         r"\bonly\s+\d+\s+(?:seconds?|minutes?|hours?)\s+left\b",
-        r"\b(?:apply|accept|respond|confirm|join)\s+(?:the offer\s+)?(?:immediately|right away|now)\b",
-        r"\b(?:must|required to)\s+(?:accept|respond|confirm|join)\s+(?:the offer\s+)?(?:immediately|right away|now)\b",
-        r"\b(?:act|respond|apply)\s+now\b",
+        r"\b(?:apply|accept|respond|confirm|join)\s+(?:the offer\s+)?(?:immediately|right away)\b",
+        r"\b(?:must|required to)\s+(?:accept|respond|confirm|join)\s+(?:the offer\s+)?(?:immediately|right away)\b",
+        r"\bonly\b.{0,50}\b(?:candidates|applicants)\b.{0,50}\b(?:respond|accept|confirm|join)\b.{0,25}\b(?:immediately|right away)\b",
+        r"\b(?:act|respond|confirm)\s+now\b",
         r"\blimited seats\b",
         r"\blimited time\b",
         r"\burgent payment\b",
@@ -219,6 +248,7 @@ def analyze_offer(description):
     urgency_evidence = None
 
     for sentence in sentences:
+
         has_urgency = sentence_has_pattern(
             sentence, urgency_patterns
         )
@@ -266,13 +296,24 @@ def analyze_offer(description):
         not in ["we", "our"]
     )
 
-    contact_information_mentioned = any(
-        phrase in text
-        for phrase in [
-            "website",
-            "official email",
-            "contact"
-        ]
+    email_mentioned = bool(
+        re.search(
+            r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b",
+            description,
+            re.IGNORECASE
+        )
+    )
+
+    contact_information_mentioned = (
+        email_mentioned
+        or any(
+            phrase in text
+            for phrase in [
+                "website",
+                "official email",
+                "contact"
+            ]
+        )
     )
 
     if not employer_name_mentioned:
@@ -341,10 +382,13 @@ def analyze_offer(description):
     }
 
 
-# 8. API endpoint
+# ==============================
+# API ENDPOINT
+# ==============================
 
 @app.route("/api/analyze", methods=["POST"])
 def analyze():
+
     data = request.get_json(silent=True)
 
     if not isinstance(data, dict):
@@ -388,6 +432,10 @@ def analyze():
         "report": report
     })
 
+
+# ==============================
+# RUN APPLICATION
+# ==============================
 
 if __name__ == "__main__":
     app.run(debug=True)

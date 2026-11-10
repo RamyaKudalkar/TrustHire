@@ -61,6 +61,11 @@ header {
     color: #13a89e;
 }
 
+.nav-links a.active {
+    color: #13a89e;
+    font-weight: 700;
+}
+
 .nav-button {
     background: #14243d;
     color: white;
@@ -243,7 +248,7 @@ header {
 }
 
 /* ==============================
-   ANALYZER SECTION
+   HOMEPAGE ANALYZER SECTION
 ============================== */
 
 .analyzer {
@@ -364,15 +369,6 @@ header {
     padding: 5px 0 22px;
     margin-bottom: 24px;
     border-bottom: 1px solid #e8edf3;
-}
-
-#result .report-header.report-status-clear {
-}
-
-#result .report-header.report-status-warning {
-}
-
-#result .report-header.report-status-review {
 }
 
 #result .report-eyebrow {
@@ -633,7 +629,7 @@ header {
 }
 
 /* ==============================
-   DISCLAIMER
+   REPORT DISCLAIMER
 ============================== */
 
 #result .report-disclaimer,
@@ -656,6 +652,289 @@ header {
     color: #b42318;
     border: 1px solid #f3c5c1;
     box-shadow: none;
+}
+
+/* ==============================
+   ANALYZER PAGE
+============================== */
+
+.analyzer-page {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 65px 25px 80px;
+}
+
+/* Page heading */
+
+.analyzer-page .section-heading {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.analyzer-page .eyebrow {
+    display: inline-block;
+    color: #13a89e;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.analyzer-page .section-heading h1 {
+    font-size: clamp(32px, 5vw, 46px);
+    color: #14243d;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.analyzer-page .section-heading p {
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Main analyzer card */
+
+.analyzer-page .analyzer-box {
+    background: #ffffff;
+    border: 1px solid #e5eaf1;
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 12px 35px rgba(23, 36, 58, 0.07);
+    max-width: 850px;
+    margin: 0 auto 45px;
+}
+
+.analyzer-page .analyzer-heading h2 {
+    color: #14243d;
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.analyzer-page .analyzer-heading p {
+    color: #718096;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* Sample offer */
+
+.analyzer-page .sample-offer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 17px 20px;
+    background: #edf7f6;
+    border: 1px solid #ccebe6;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.analyzer-page .sample-offer strong {
+    color: #134e4a;
+    font-size: 14px;
+}
+
+.analyzer-page .sample-offer p {
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.analyzer-page .sample-button {
+    background: #ffffff;
+    color: #108b83;
+    border: 1px solid #13a89e;
+    border-radius: 8px;
+    padding: 11px 16px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s;
+}
+
+.analyzer-page .sample-button:hover {
+    background: #13a89e;
+    color: #ffffff;
+}
+
+/* Text area */
+
+.analyzer-page .analyzer-box textarea {
+    display: block;
+    width: 100%;
+    min-height: 230px;
+    resize: vertical;
+    padding: 18px;
+    border: 1px solid #dce3ed;
+    border-radius: 10px;
+    background: #fbfcfe;
+    color: #17243a;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.7;
+    outline: none;
+    margin-bottom: 0;
+    transition: 0.2s;
+}
+
+.analyzer-page .analyzer-box textarea:focus {
+    border-color: #13a89e;
+    box-shadow: 0 0 0 3px rgba(19, 168, 158, 0.1);
+}
+
+.analyzer-page .analyzer-box textarea::placeholder {
+    color: #9aa6b5;
+}
+
+/* Character counter */
+
+.analyzer-page .character-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: #8793a3;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/* Analyze button */
+
+.analyzer-page .analyzer-box .analyze-button {
+    display: block;
+    width: 100%;
+    margin: 24px 0 0;
+    padding: 16px;
+    background: #13a89e;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.analyzer-page .analyzer-box .analyze-button:hover {
+    background: #108b83;
+    transform: translateY(-1px);
+}
+
+.analyzer-page .analyzer-box .analyze-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Privacy note */
+
+.analyzer-page .privacy-note {
+    text-align: center;
+    color: #8793a3;
+    font-size: 12px;
+    margin-top: 16px;
+    line-height: 1.6;
+}
+
+/* Analyzer report positioning */
+
+.analyzer-page #result {
+    max-width: 850px;
+    margin: 0 auto 55px;
+}
+
+.analyzer-page #result:empty {
+    display: none;
+}
+
+/* ==============================
+   BEFORE YOU APPLY SECTION
+============================== */
+
+.analyzer-page .analyzer-checklist {
+    margin-top: 75px;
+}
+
+.analyzer-page .analyzer-checklist .section-heading {
+    margin-bottom: 35px;
+}
+
+.analyzer-page .analyzer-checklist .section-heading h2 {
+    font-size: 30px;
+    color: #14243d;
+    margin-bottom: 15px;
+}
+
+/* Checklist cards */
+
+.analyzer-page .checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.analyzer-page .checklist-item {
+    background: #ffffff;
+    border: 1px solid #e5eaf1;
+    border-radius: 14px;
+    padding: 25px;
+    transition: 0.2s;
+}
+
+.analyzer-page .checklist-item:hover {
+    border-color: #99e5dc;
+    box-shadow: 0 8px 22px rgba(23, 36, 58, 0.06);
+    transform: translateY(-3px);
+}
+
+.analyzer-page .check-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #d9f3ef;
+    color: #108b83;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 17px;
+}
+
+.analyzer-page .checklist-item h3 {
+    color: #14243d;
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+.analyzer-page .checklist-item p {
+    color: #718096;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+/* ==============================
+   ANALYZER DISCLAIMER
+============================== */
+
+.analyzer-page .analyzer-disclaimer {
+    margin-top: 45px;
+    padding: 22px 25px;
+    background: #f1f5f9;
+    border-left: 4px solid #13a89e;
+    border-radius: 8px;
+    color: #526176;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.analyzer-page .analyzer-disclaimer strong {
+    color: #14243d;
 }
 
 /* ==============================
@@ -711,6 +990,18 @@ footer {
     #result h3 {
         font-size: 21px;
     }
+
+    .analyzer-page {
+        padding: 50px 20px 65px;
+    }
+
+    .analyzer-page .analyzer-box {
+        padding: 25px;
+    }
+
+    .analyzer-page .checklist-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
@@ -721,6 +1012,11 @@ footer {
 
     .nav-links {
         flex-wrap: wrap;
+        gap: 13px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
     }
 
     .hero h1 {
@@ -753,5 +1049,34 @@ footer {
 
     #result .verification-row {
         font-size: 12px;
+    }
+
+    .analyzer-page {
+        padding: 40px 16px 50px;
+    }
+
+    .analyzer-page .analyzer-box {
+        padding: 20px 17px;
+    }
+
+    .analyzer-page .sample-offer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .analyzer-page .section-heading h1 {
+        font-size: 32px;
+    }
+
+    .analyzer-page .character-info {
+        font-size: 11px;
+    }
+
+    .analyzer-page .analyzer-checklist .section-heading h2 {
+        font-size: 26px;
+    }
+
+    .analyzer-page .analyzer-disclaimer {
+        padding: 17px;
     }
 }

@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analyze an Offer | TrustHire</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">TrustHire</div>
+
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#about">About</a>
+                <a href="/#how-it-works">How It Works</a>
+                <a href="/analyzer" class="active">Analyze Offer</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- ANALYZER INTRODUCTION -->
+
+    <section class="analyzer-page">
+
+        <div class="section-heading">
+            <span class="eyebrow">OFFER CHECKER</span>
+
+            <h1>Analyze Before You Apply.</h1>
+
+            <p>
+                Paste a job or internship description below.
+                TrustHire will review the text for potential warning
+                signs and information you should verify.
+            </p>
+        </div>
+
+
+        <!-- ANALYZER BOX -->
+
+        <div class="analyzer-box">
+
+            <div class="analyzer-heading">
+                <h2>Job / Internship Description</h2>
+
+                <p>
+                    Paste the complete description you received.
+                </p>
+            </div>
+
+            <div class="sample-offer">
+                <div>
+                    <strong>Need an example?</strong>
+
+                    <p>
+                        Try a fictional job offer to see how TrustHire works.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="sample-button"
+                    onclick="loadSample()"
+                >
+                    Try an example
+                </button>
+            </div>
+
+            <textarea
+                id="jobDescription"
+                placeholder="Paste your job or internship description here..."
+                maxlength="10000"
+            ></textarea>
+
+            <div class="character-info">
+                <span>Maximum 10,000 characters</span>
+                <span id="characterCount">0 / 10000</span>
+            </div>
+
+            <button
+                type="button"
+                class="analyze-button"
+                onclick="analyzeOffer()"
+            >
+                Analyze Offer
+            </button>
+
+            <p class="privacy-note">
+                Your description is analyzed for this request and is
+                not stored by TrustHire.
+            </p>
+
+        </div>
+
+
+        <!-- ANALYSIS REPORT -->
+
+        <div id="result"></div>
+
+
+        <!-- VERIFICATION CHECKLIST -->
+
+        <section class="analyzer-checklist">
+
+            <div class="section-heading">
+                <span class="eyebrow">STAY INFORMED</span>
+
+                <h2>Before You Apply</h2>
+
+                <p>
+                    A few checks can help you make a more informed decision.
+                </p>
+            </div>
+
+            <div class="checklist-grid">
+
+                <div class="checklist-item">
+                    <span class="check-icon">01</span>
+
+                    <h3>Verify the company</h3>
+
+                    <p>
+                        Find its official website independently and
+                        check its identity.
+                    </p>
+                </div>
+
+                <div class="checklist-item">
+                    <span class="check-icon">02</span>
+
+                    <h3>Check the vacancy</h3>
+
+                    <p>
+                        Look for the same opening on the company's
+                        official careers page.
+                    </p>
+                </div>
+
+                <div class="checklist-item">
+                    <span class="check-icon">03</span>
+
+                    <h3>Verify the recruiter</h3>
+
+                    <p>
+                        Confirm the recruiter's identity using
+                        independently obtained contact details.
+                    </p>
+                </div>
+
+                <div class="checklist-item">
+                    <span class="check-icon">04</span>
+
+                    <h3>Protect your information</h3>
+
+                    <p>
+                        Never share passwords, OTPs or banking
+                        credentials with recruiters.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DISCLAIMER -->
+
+        <div class="analyzer-disclaimer">
+
+            <strong>Important:</strong>
+
+            TrustHire performs a preliminary text-based review.
+            It does not independently verify companies, recruiters
+            or vacancies. A report with no detected warnings does
+            not guarantee that an opportunity is genuine.
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        <p>
+            © 2026 TrustHire. Know Before You Apply.
+        </p>
+
+        <p>
+            Stay informed. Apply carefully.
+        </p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+    <script>
+        // Fictional sample offer
+
+        function loadSample() {
+
+            const sample = `BrightPath Technologies is offering a Software Development Intern position.
+
+            Responsibilities include assisting with web development, testing and documentation.
+
+            Selected candidates must pay a refundable training fee of Rs. 2000 before joining.
+
+            Interested applicants should contact the recruitment team for further details.`;
+
+            const textarea = document.getElementById("jobDescription");
+
+            textarea.value = sample.trim();
+
+            updateCharacterCount();
+
+            textarea.focus();
+        }
+
+
+        // Character counter
+
+        const descriptionInput = document.getElementById("jobDescription");
+
+        descriptionInput.addEventListener("input", updateCharacterCount);
+
+        function updateCharacterCount() {
+
+            const count = descriptionInput.value.length;
+
+            document.getElementById("characterCount").textContent =
+                count + " / 10000";
+        }
+
+    </script>
+
+</body>
+</html>
