@@ -567,20 +567,25 @@ header {
 #result .verification-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 12px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 6px 16px;
     padding: 13px 0;
     border-bottom: 1px solid #e3eaf1;
     font-size: 14px;
 }
 
 #result .verification-row span {
+    display: block;
+    margin-right: 12px;
     color: #536176;
 }
 
 #result .verification-row strong {
+    display: block;
     color: #108b83;
     text-align: right;
+    overflow-wrap: anywhere;
 }
 
 #result .verification-row .verification-pending {
